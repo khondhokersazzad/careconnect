@@ -30,7 +30,7 @@ export default function ServiceCard({ service }) {
           </span>
 
           <Link
-            href={`/service/${service.id}`}
+            href={`/services/${service.id}`}
             className="px-4 py-2 bg-emerald-500 text-white text-sm rounded-lg hover:bg-emerald-600 transition"
           >
             View Details
