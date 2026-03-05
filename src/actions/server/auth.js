@@ -3,11 +3,12 @@
 import { dbConnect } from "@/app/lib/dbConnect";
 import bcrypt from "bcryptjs";
 
+//for register user
 export const postUser = async (payload) => {
   console.log(payload);
 
   //0.Validation
-  // if(!payload.email || !payload.password) return null;
+   if(!payload.email || !payload.password) return null;
 
   //1. check user exist
   const usersCollection = await dbConnect("users");
@@ -46,3 +47,31 @@ export const postUser = async (payload) => {
     };
   }
 };
+
+//backend for login user
+
+export const loginUser = async (payload) =>{
+  //0.Validation
+   if(!payload.email || !payload.password) return null;
+
+  //1. check user exist
+  const usersCollection = await dbConnect("users");
+  const user = await usersCollection.findOne({
+    email: payload.email,
+  });
+  if (user) {
+    return {
+      success: false,
+      message: `Something went wrong.Try Again`,
+    };
+  }
+  if(!user) return null;
+  //2. check password
+
+  const isMatched = await bcrypt.compare(password, user.password);
+  if(isMatched){
+    return user;
+  }else{
+    return null;
+  }
+}

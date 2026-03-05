@@ -1,6 +1,7 @@
 
 import React from "react";
 import NavLink from "./buttons/NavLink";
+import AuthButtons from "./buttons/AuthButtons";
 
 const NavBar = () => {
   return (
@@ -108,9 +109,7 @@ const NavBar = () => {
 
     {/* Right Section */}
     <div className="navbar-end">
-      <button className="btn bg-white text-emerald-600 hover:bg-emerald-100 border-none rounded-xl">
-        Login
-      </button>
+      <AuthButtons></AuthButtons>
     </div>
 
   </div>
